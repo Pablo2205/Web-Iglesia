@@ -53,7 +53,7 @@ export default function Home() {
             priority
           />
         </div>
-        <div className="relative z-10">
+        <div className="relative z-30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
@@ -62,16 +62,16 @@ export default function Home() {
             <p className="text-xl md:text-2xl mb-8 text-primary-100">
               Una comunidad de fe, amor y esperanza
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center relative z-40">
               <Link
                 href="/sobre-nosotros"
-                className="bg-white text-primary-600 px-8 py-3 rounded-lg font-semibold hover:bg-primary-50 transition-colors"
+                className="bg-white text-primary-600 px-8 py-3 rounded-lg font-semibold hover:bg-primary-50 transition-colors shadow-lg"
               >
                 Conoce Más
               </Link>
               <Link
                 href="/contacto"
-                className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-colors"
+                className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-colors shadow-lg"
               >
                 Contáctanos
               </Link>
