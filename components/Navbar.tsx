@@ -6,11 +6,20 @@ import { Menu, X, Church, ChevronDown } from "lucide-react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isMinisteriosOpen, setIsMinisteriosOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
   const navigation = [
     { name: "Inicio", href: "/" },
-    { name: "Sobre Nosotros", href: "/sobre-nosotros" },
+    { 
+      name: "Sobre Nosotros", 
+      href: "/sobre-nosotros",
+      hasDropdown: true,
+      dropdownItems: [
+        { name: "Historia", href: "/sobre-nosotros#historia" },
+        { name: "Visión", href: "/sobre-nosotros#vision" },
+        { name: "Declaración de Fe", href: "/sobre-nosotros#declaracion-fe" }
+      ]
+    },
     { 
       name: "Ministerios", 
       href: "/ministerios",
@@ -23,8 +32,28 @@ export default function Navbar() {
         { name: "Las necesidades: hospitalidad y servicio", href: "/ministerios/la-necesidad" }
       ]
     },
-    { name: "Recursos", href: "/recursos" },
-    { name: "Eventos", href: "/eventos" },
+    { 
+      name: "Recursos", 
+      href: "/recursos",
+      hasDropdown: true,
+      dropdownItems: [
+        { name: "Materiales de Estudio", href: "/recursos#materiales" },
+        { name: "Discipulado", href: "/recursos#discipulado" },
+        { name: "Transmisiones", href: "/recursos#transmisiones" },
+        { name: "Librería", href: "/recursos#libreria" }
+      ]
+    },
+    { 
+      name: "Eventos", 
+      href: "/eventos",
+      hasDropdown: true,
+      dropdownItems: [
+        { name: "Actividades", href: "/eventos#actividades" },
+        { name: "Campamentos", href: "/eventos#campamentos" },
+        { name: "Noticias", href: "/eventos#noticias" },
+        { name: "Anuncios", href: "/eventos#anuncios" }
+      ]
+    },
     { name: "Contacto", href: "/contacto" },
   ];
 
@@ -46,8 +75,8 @@ export default function Navbar() {
                 {item.hasDropdown ? (
                   <div 
                     className="relative"
-                    onMouseEnter={() => setIsMinisteriosOpen(true)}
-                    onMouseLeave={() => setIsMinisteriosOpen(false)}
+                    onMouseEnter={() => setActiveDropdown(item.name)}
+                    onMouseLeave={() => setActiveDropdown(null)}
                   >
                     <Link
                       href={item.href}
@@ -58,13 +87,13 @@ export default function Navbar() {
                     </Link>
                     
                     {/* Dropdown Menu */}
-                    {isMinisteriosOpen && (
+                    {activeDropdown === item.name && (
                       <div className="absolute top-full left-0 mt-1 w-80 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
                         {item.dropdownItems?.map((dropdownItem, index) => (
                           <Link
                             key={index}
                             href={dropdownItem.href}
-                            className="block px-4 py-3 text-sm text-blue-600 hover:bg-blue-50 hover:text-blue-700 transition-colors"
+                            className="block px-4 py-3 text-sm text-primary-600 hover:bg-primary-50 hover:text-primary-700 transition-colors border-l-2 border-transparent hover:border-primary-500"
                           >
                             {dropdownItem.name}
                           </Link>
@@ -105,19 +134,19 @@ export default function Navbar() {
                 {item.hasDropdown ? (
                   <div>
                     <button
-                      onClick={() => setIsMinisteriosOpen(!isMinisteriosOpen)}
+                      onClick={() => setActiveDropdown(activeDropdown === item.name ? null : item.name)}
                       className="w-full flex items-center justify-between px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 transition-colors"
                     >
                       {item.name}
-                      <ChevronDown className={`h-4 w-4 transition-transform ${isMinisteriosOpen ? 'rotate-180' : ''}`} />
+                      <ChevronDown className={`h-4 w-4 transition-transform ${activeDropdown === item.name ? 'rotate-180' : ''}`} />
                     </button>
-                    {isMinisteriosOpen && (
+                    {activeDropdown === item.name && (
                       <div className="ml-4 mt-1 space-y-1">
                         {item.dropdownItems?.map((dropdownItem, index) => (
                           <Link
                             key={index}
                             href={dropdownItem.href}
-                            className="block px-3 py-2 rounded-md text-sm text-blue-600 hover:bg-blue-50 hover:text-blue-700 transition-colors"
+                            className="block px-3 py-2 rounded-md text-sm text-primary-600 hover:bg-primary-50 hover:text-primary-700 transition-colors border-l-2 border-primary-200 ml-2"
                             onClick={() => setIsOpen(false)}
                           >
                             {dropdownItem.name}
