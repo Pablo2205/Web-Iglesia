@@ -55,7 +55,7 @@ export default function EventCarousel() {
     
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % eventos.length);
-    }, 5000); // Cambia cada 5 segundos
+    }, 4000); // Cambia cada 4 segundos
 
     return () => clearInterval(interval);
   }, [eventos.length, isPaused]);

@@ -42,7 +42,7 @@ export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary-600 to-primary-800 text-white pt-24 pb-20 overflow-hidden mt-16">
+      <section className="relative bg-gradient-to-br from-primary-600 to-primary-800 text-white pt-20 pb-20 overflow-hidden">
         {/* Imagen de fondo */}
         <div className="absolute inset-0 opacity-20">
           <Image
