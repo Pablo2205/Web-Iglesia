@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, Calendar } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -15,6 +15,7 @@ interface Evento {
 
 export default function EventCarousel() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
   const eventos: Evento[] = [
     {
@@ -47,6 +48,17 @@ export default function EventCarousel() {
   const prevSlide = () => {
     setCurrentSlide((prev) => (prev - 1 + eventos.length) % eventos.length);
   };
+
+  // Auto-play functionality
+  useEffect(() => {
+    if (isPaused) return;
+    
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % eventos.length);
+    }, 5000); // Cambia cada 5 segundos
+
+    return () => clearInterval(interval);
+  }, [eventos.length, isPaused]);
 
   return (
     <div className="relative bg-gradient-to-br from-primary-600 to-primary-800 rounded-xl overflow-hidden shadow-2xl">
@@ -91,14 +103,20 @@ export default function EventCarousel() {
 
       {/* Navigation Arrows */}
       <button
-        onClick={prevSlide}
+        onClick={() => {
+          setIsPaused(true);
+          prevSlide();
+        }}
         className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-2 rounded-full transition-colors backdrop-blur-sm"
         aria-label="Evento anterior"
       >
         <ChevronLeft className="h-6 w-6" />
       </button>
       <button
-        onClick={nextSlide}
+        onClick={() => {
+          setIsPaused(true);
+          nextSlide();
+        }}
         className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-2 rounded-full transition-colors backdrop-blur-sm"
         aria-label="Siguiente evento"
       >
@@ -110,7 +128,10 @@ export default function EventCarousel() {
         {eventos.map((_, index) => (
           <button
             key={index}
-            onClick={() => setCurrentSlide(index)}
+            onClick={() => {
+              setIsPaused(true);
+              setCurrentSlide(index);
+            }}
             className={`h-2 rounded-full transition-all ${
               index === currentSlide
                 ? "w-8 bg-white"
