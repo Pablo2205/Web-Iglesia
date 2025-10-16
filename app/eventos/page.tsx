@@ -27,11 +27,9 @@ export default function Eventos() {
       icon: <Tent className="h-12 w-12" />,
       descripcion: "Retiros espirituales y campamentos",
       items: [
-        "Campamento de verano",
+        "Campamento de Adolescentes",
         "Retiro de jóvenes",
-        "Retiro de parejas",
-        "Retiro de líderes",
-        "Campamento familiar"
+        "Campamento Iglesia"
       ],
       color: "from-primary-400 to-primary-500"
     },
@@ -79,8 +77,8 @@ export default function Eventos() {
       tipo: "Actividad regular"
     },
     {
-      titulo: "Campamento de Verano",
-      fecha: "20-22 de Octubre",
+      titulo: "Campamento Iglesia",
+      fecha: "20-22 de Noviembre",
       hora: "Todo el día",
       lugar: "Por confirmar",
       tipo: "Evento especial"

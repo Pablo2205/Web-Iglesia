@@ -84,7 +84,7 @@ export default function LaOracion() {
       <section className="relative bg-gradient-to-br from-primary-600 to-primary-800 text-white py-16 overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <Image
-            src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=1920&q=80"
+            src="/images/ministerios/la-oracion.jpg"
             alt="La Oración"
             fill
             className="object-cover"

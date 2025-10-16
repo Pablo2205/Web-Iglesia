@@ -51,7 +51,7 @@ export default function Contacto() {
                 <div className="flex items-start text-gray-700 mb-4">
                   <MapPin className="h-5 w-5 mr-3 text-primary-600 mt-1 flex-shrink-0" />
                   <div>
-                    <p className="font-semibold">Nuestra Iglesia</p>
+                    <p className="font-semibold">Iglesia Bautista Avellaneda Norte</p>
                     <p>Chile 781</p>
                     <p>Piñeyro, Buenos Aires</p>
                     <p>Avellaneda, B1868</p>
@@ -84,7 +84,6 @@ export default function Contacto() {
                     <div>
                       <p className="text-sm text-gray-600">Teléfono</p>
                       <p className="font-semibold text-gray-900">+54 (11) XXXX-XXXX</p>
-                      <p className="text-xs text-gray-500">(Actualizar con tu número)</p>
                     </div>
                   </div>
                   <div className="flex items-center">
@@ -94,7 +93,6 @@ export default function Contacto() {
                     <div>
                       <p className="text-sm text-gray-600">Email</p>
                       <p className="font-semibold text-gray-900">contacto@iglesia.com</p>
-                      <p className="text-xs text-gray-500">(Actualizar con tu email)</p>
                     </div>
                   </div>
                 </div>
@@ -187,16 +185,20 @@ export default function Contacto() {
                 <div className="space-y-4">
                   <div className="border-l-4 border-primary-600 pl-4">
                     <p className="font-semibold text-gray-900">Domingo</p>
-                    <p className="text-gray-600">Escuela Dominical: 9:00 AM</p>
-                    <p className="text-gray-600">Culto Principal: 10:00 AM - 12:00 PM</p>
+                    <p className="text-gray-600">Escuela Dominical: 10:00 AM</p>
+                    <p className="text-gray-600">Culto Principal: 11:00 AM - 13:00 PM</p>
                   </div>
                   <div className="border-l-4 border-primary-300 pl-4">
                     <p className="font-semibold text-gray-900">Miércoles</p>
-                    <p className="text-gray-600">Reunión de Oración: 7:00 PM - 8:30 PM</p>
+                    <p className="text-gray-600">Reunión de Oración: 8:00 PM - 9:30 PM</p>
                   </div>
                   <div className="border-l-4 border-primary-300 pl-4">
-                    <p className="font-semibold text-gray-900">Viernes</p>
-                    <p className="text-gray-600">Reunión de Jóvenes: 7:00 PM - 9:00 PM</p>
+                    <p className="font-semibold text-gray-900">Sabado</p>
+                    <p className="text-gray-600">Reunion de Adolescentes: 4:00 PM - 7:00 PM</p>
+                  </div>
+                  <div className="border-l-4 border-primary-300 pl-4">
+                    <p className="font-semibold text-gray-900">Sabado</p>
+                    <p className="text-gray-600">Reunión de Jóvenes: 8:00 PM - 10:00 PM</p>
                   </div>
                 </div>
               </div>
@@ -225,7 +227,8 @@ export default function Contacto() {
                     <div>
                       <p className="font-semibold text-gray-900">En Transporte Público</p>
                       <p className="text-gray-600 text-sm">
-                        Rutas 12, 45 y 78. Parada: Calle Principal
+                        Lineas 37, 79, 373, 85 y 20. 
+                        Parada: Esquina Outlet Rivadavia 
                       </p>
                     </div>
                   </div>

@@ -1,8 +1,16 @@
-import { Target, Cross, BookOpen, Users } from "lucide-react";
+"use client";
+
+import { Target, Cross, BookOpen, Users, ChevronDown, ChevronUp } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
 
 export default function SobreNosotros() {
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+
+  const toggleExpansion = (index: number) => {
+    setExpandedIndex(expandedIndex === index ? null : index);
+  };
   return (
     <div className="pt-16">
       {/* Header */}
@@ -64,7 +72,6 @@ export default function SobreNosotros() {
               />
             </div>
             <p className="text-center text-sm text-gray-500 mt-2">
-              📸 Reemplaza esta imagen con una foto de tu iglesia en: public/images/sobre-nosotros/historia.jpg
             </p>
           </div>
 
@@ -171,46 +178,135 @@ export default function SobreNosotros() {
               {[
                 {
                   title: "La Biblia",
-                  content: "Creemos que la Biblia es la Palabra inspirada de Dios, inerrante en su forma original, y la autoridad final en asuntos de fe y conducta."
+                  summary: "Creemos que la Biblia es la Palabra inspirada de Dios, inerrante en su forma original, y la autoridad final en asuntos de fe y conducta.",
+                  details: "La Biblia es nuestra única regla de fe y práctica. Creemos que fue escrita por hombres bajo la inspiración divina del Espíritu Santo, preservando la autoridad y veracidad de cada palabra. Es el fundamento de toda doctrina y la guía para nuestra vida cristiana.",
+                  verses: [
+                    "2 Timoteo 3:16-17 - 'Toda la Escritura es inspirada por Dios, y útil para enseñar, para redargüir, para corregir, para instruir en justicia, a fin de que el hombre de Dios sea perfecto, enteramente preparado para toda buena obra.'",
+                    "2 Pedro 1:20-21 - 'Entendiendo primero esto, que ninguna profecía de la Escritura es de interpretación privada, porque nunca la profecía fue traída por voluntad humana, sino que los santos hombres de Dios hablaron siendo inspirados por el Espíritu Santo.'"
+                  ]
                 },
                 {
                   title: "Dios",
-                  content: "Creemos en un solo Dios, eternamente existente en tres personas: Padre, Hijo y Espíritu Santo, iguales en poder y gloria."
+                  summary: "Creemos en un solo Dios, eternamente existente en tres personas: Padre, Hijo y Espíritu Santo, iguales en poder y gloria.",
+                  details: "Creemos en la Trinidad: un solo Dios en tres personas distintas pero iguales. El Padre es el Creador y Sustentador de todas las cosas. El Hijo es el Redentor que se encarnó en Jesucristo. El Espíritu Santo es el Consolador que habita en los creyentes.",
+                  verses: [
+                    "Deuteronomio 6:4 - 'Oye, Israel: Jehová nuestro Dios, Jehová uno es.'",
+                    "Mateo 28:19 - 'Por tanto, id, y haced discípulos a todas las naciones, bautizándolos en el nombre del Padre, y del Hijo, y del Espíritu Santo.'",
+                    "2 Corintios 13:14 - 'La gracia del Señor Jesucristo, el amor de Dios, y la comunión del Espíritu Santo sean con todos vosotros.'"
+                  ]
                 },
                 {
                   title: "Jesucristo",
-                  content: "Creemos en la deidad de Jesucristo, su nacimiento virginal, su vida sin pecado, sus milagros, su muerte expiatoria en la cruz, su resurrección corporal y su ascensión al cielo."
+                  summary: "Creemos en la deidad de Jesucristo, su nacimiento virginal, su vida sin pecado, sus milagros, su muerte expiatoria en la cruz, su resurrección corporal y su ascensión al cielo.",
+                  details: "Jesucristo es verdadero Dios y verdadero hombre. Nació de la virgen María, vivió una vida sin pecado, realizó milagros que confirmaron su divinidad, murió en la cruz como sacrificio por nuestros pecados, resucitó al tercer día y ascendió al cielo donde intercede por nosotros.",
+                  verses: [
+                    "Juan 1:1,14 - 'En el principio era el Verbo, y el Verbo era con Dios, y el Verbo era Dios... Y aquel Verbo fue hecho carne, y habitó entre nosotros.'",
+                    "Isaías 7:14 - 'Por tanto, el Señor mismo os dará señal: He aquí que la virgen concebirá, y dará a luz un hijo, y llamará su nombre Emanuel.'",
+                    "1 Corintios 15:3-4 - 'Porque primeramente os he enseñado lo que asimismo recibí: Que Cristo murió por nuestros pecados, conforme a las Escrituras; y que fue sepultado, y que resucitó al tercer día, conforme a las Escrituras.'"
+                  ]
                 },
                 {
                   title: "El Espíritu Santo",
-                  content: "Creemos en el Espíritu Santo, quien convence de pecado, regenera, habita, guía, enseña y capacita al creyente para una vida santa y un servicio eficaz."
+                  summary: "Creemos en el Espíritu Santo, quien convence de pecado, regenera, habita, guía, enseña y capacita al creyente para una vida santa y un servicio eficaz.",
+                  details: "El Espíritu Santo es la tercera persona de la Trinidad. Convence al mundo de pecado, justicia y juicio. Regenera a los creyentes, los bautiza en el cuerpo de Cristo, los sella para el día de la redención, y los capacita con dones espirituales para el servicio.",
+                  verses: [
+                    "Juan 16:8 - 'Y cuando él venga, convencerá al mundo de pecado, de justicia y de juicio.'",
+                    "Tito 3:5 - 'Nos salvó, no por obras de justicia que nosotros hubiéramos hecho, sino por su misericordia, por el lavamiento de la regeneración y por la renovación en el Espíritu Santo.'",
+                    "Efesios 1:13-14 - 'En él también vosotros, habiendo oído la palabra de verdad, el evangelio de vuestra salvación, y habiendo creído en él, fuisteis sellados con el Espíritu Santo de la promesa.'"
+                  ]
                 },
                 {
                   title: "La Salvación",
-                  content: "Creemos que la salvación es por gracia mediante la fe en Jesucristo, no por obras, y que todos los que le reciben son nacidos de nuevo por el Espíritu Santo."
+                  summary: "Creemos que la salvación es por gracia mediante la fe en Jesucristo, no por obras, y que todos los que le reciben son nacidos de nuevo por el Espíritu Santo.",
+                  details: "La salvación es un don gratuito de Dios, no se puede ganar por méritos humanos. Se recibe por fe en Jesucristo como Señor y Salvador. Incluye el perdón de pecados, la justificación, la adopción como hijos de Dios, y la garantía de vida eterna.",
+                  verses: [
+                    "Efesios 2:8-9 - 'Porque por gracia sois salvos por medio de la fe; y esto no de vosotros, pues es don de Dios; no por obras, para que nadie se gloríe.'",
+                    "Juan 3:16 - 'Porque de tal manera amó Dios al mundo, que ha dado a su Hijo unigénito, para que todo aquel que en él cree, no se pierda, mas tenga vida eterna.'",
+                    "Romanos 10:9 - 'Si confesares con tu boca que Jesús es el Señor, y creyeres en tu corazón que Dios le levantó de los muertos, serás salvo.'"
+                  ]
                 },
                 {
                   title: "La Iglesia",
-                  content: "Creemos en la iglesia universal, el cuerpo de Cristo, compuesto por todos los creyentes verdaderos, y en la iglesia local como expresión visible de este cuerpo."
+                  summary: "Creemos en la iglesia universal, el cuerpo de Cristo, compuesto por todos los creyentes verdaderos, y en la iglesia local como expresión visible de este cuerpo.",
+                  details: "La iglesia universal incluye a todos los creyentes de todos los tiempos. La iglesia local es la expresión visible de la iglesia universal en un lugar específico. Su propósito es adorar a Dios, edificar a los creyentes, evangelizar al mundo y servir a la comunidad.",
+                  verses: [
+                    "Efesios 1:22-23 - 'Y sometió todas las cosas bajo sus pies, y lo dio por cabeza sobre todas las cosas a la iglesia, la cual es su cuerpo, la plenitud de Aquel que todo lo llena en todo.'",
+                    "Mateo 16:18 - 'Y yo también te digo, que tú eres Pedro, y sobre esta roca edificaré mi iglesia; y las puertas del Hades no prevalecerán contra ella.'",
+                    "Hechos 2:42 - 'Y perseveraban en la doctrina de los apóstoles, en la comunión unos con otros, en el partimiento del pan y en las oraciones.'"
+                  ]
                 },
                 {
                   title: "El Regreso de Cristo",
-                  content: "Creemos en el regreso personal y visible de Jesucristo para establecer su reino y en la resurrección de los muertos para vida eterna o condenación eterna."
+                  summary: "Creemos en el regreso personal y visible de Jesucristo para establecer su reino y en la resurrección de los muertos para vida eterna o condenación eterna.",
+                  details: "Jesucristo regresará personal y visiblemente a la tierra para establecer su reino milenial. Habrá una resurrección de los justos para vida eterna y de los injustos para condenación eterna. Los creyentes serán arrebatados antes de la gran tribulación.",
+                  verses: [
+                    "Hechos 1:11 - 'Varones galileos, ¿por qué estáis mirando al cielo? Este mismo Jesús, que ha sido tomado de vosotros al cielo, así vendrá como le habéis visto ir al cielo.'",
+                    "1 Tesalonicenses 4:16-17 - 'Porque el Señor mismo con voz de mando, con voz de arcángel, y con trompeta de Dios, descenderá del cielo; y los muertos en Cristo resucitarán primero. Luego nosotros los que vivimos, los que hayamos quedado, seremos arrebatados juntamente con ellos en las nubes para recibir al Señor en el aire.'",
+                    "Apocalipsis 20:6 - 'Bienaventurado y santo el que tiene parte en la primera resurrección; la segunda muerte no tiene potestad sobre estos.'"
+                  ]
                 }
               ].map((item, index) => (
                 <div
                   key={index}
-                  className="bg-gradient-to-r from-primary-50 to-white rounded-lg p-6 border-l-4 border-primary-600 hover:shadow-lg transition-shadow"
+                  className="bg-gradient-to-r from-primary-50 to-white rounded-lg border-l-4 border-primary-600 hover:shadow-lg transition-all duration-300 overflow-hidden"
                 >
-                  <div className="flex items-start">
-                    <Cross className="h-6 w-6 text-primary-600 mt-1 mr-4 flex-shrink-0" />
-                    <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                        {item.title}
-                      </h3>
-                      <p className="text-gray-600 leading-relaxed">
-                        {item.content}
-                      </p>
+                  <button
+                    onClick={() => toggleExpansion(index)}
+                    className="w-full text-left p-6 hover:bg-primary-25 transition-colors"
+                  >
+                    <div className="flex items-start justify-between">
+                      <div className="flex items-start flex-1">
+                        <Cross className="h-6 w-6 text-primary-600 mt-1 mr-4 flex-shrink-0" />
+                        <div className="flex-1">
+                          <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                            {item.title}
+                          </h3>
+                          <p className="text-gray-600 leading-relaxed">
+                            {item.summary}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="ml-4 flex-shrink-0">
+                        {expandedIndex === index ? (
+                          <ChevronUp className="h-6 w-6 text-primary-600" />
+                        ) : (
+                          <ChevronDown className="h-6 w-6 text-primary-600" />
+                        )}
+                      </div>
+                    </div>
+                  </button>
+                  
+                  <div
+                    className={`transition-all duration-300 ease-in-out ${
+                      expandedIndex === index
+                        ? "max-h-[1000px] opacity-100"
+                        : "max-h-0 opacity-0 overflow-hidden"
+                    }`}
+                  >
+                    <div className="px-6 pb-6 border-t border-primary-100">
+                      <div className="pt-4">
+                        <h4 className="font-semibold text-gray-900 mb-3 flex items-center">
+                          <span className="w-1 h-6 bg-primary-600 mr-2 rounded"></span>
+                          Explicación Detallada
+                        </h4>
+                        <p className="text-gray-700 leading-relaxed mb-6 pl-3">
+                          {item.details}
+                        </p>
+                        
+                        <h4 className="font-semibold text-gray-900 mb-3 flex items-center">
+                          <span className="w-1 h-6 bg-primary-600 mr-2 rounded"></span>
+                          Versículos Bíblicos
+                        </h4>
+                        <div className="space-y-3 pl-3">
+                          {item.verses.map((verse, verseIndex) => (
+                            <div key={verseIndex} className="bg-white p-4 rounded-lg border border-primary-100">
+                              <p className="text-gray-700 text-sm leading-relaxed font-medium">
+                                {verse}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>

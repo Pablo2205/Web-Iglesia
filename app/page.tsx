@@ -46,8 +46,8 @@ export default function Home() {
         {/* Imagen de fondo */}
         <div className="absolute inset-0 opacity-20">
           <Image
-            src="https://images.unsplash.com/photo-1507692049790-de58290a4334?w=1920&q=80"
-            alt="Iglesia"
+            src="/images/sobre-nosotros/hero.jpg"
+            alt="Nuestra Iglesia"
             fill
             className="object-cover"
             priority
@@ -170,10 +170,10 @@ export default function Home() {
                   <div className="relative h-48 bg-gray-200">
                     <Image
                       src={
-                        index === 0 ? "https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=800&q=80" :
-                        index === 1 ? "https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=800&q=80" :
-                        index === 2 ? "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&q=80" :
-                        "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800&q=80"
+                        index === 0 ? "/images/sobre-nosotros/historia.jpg" :
+                        index === 1 ? "/images/ministerios/la-palabra.jpg" :
+                        index === 2 ? "/images/ministerios/la-necesidad.jpg" :
+                        "/images/eventos/actividades.jpg"
                       }
                       alt={seccion.title}
                       fill
@@ -228,7 +228,7 @@ export default function Home() {
                 <div className="w-16 h-1 bg-primary-600 mx-auto mt-2"></div>
               </div>
               <p className="text-gray-600 text-center mb-6">
-                Equipar a los miembros para el trabajo del ministerio a través de la adoración,
+                Equipar a los miembros para el trabajo del ministerio a través de la
                 la predicación y enseñanza de la Palabra de Dios, misiones y comunión.
               </p>
               <div className="space-y-3">
@@ -241,8 +241,8 @@ export default function Home() {
                   <p className="text-sm text-gray-600">Estudio y Discipulado</p>
                 </Link>
                 <Link href="/ministerios" className="block bg-primary-50 hover:bg-primary-100 rounded-lg p-4 transition-colors">
-                  <h4 className="font-semibold text-primary-700">La Adoración</h4>
-                  <p className="text-sm text-gray-600">Corazones y Voces</p>
+                  <h4 className="font-semibold text-primary-700">La Oración</h4>
+                  <p className="text-sm text-gray-600">Intercesión y Comunión</p>
                 </Link>
               </div>
             </div>

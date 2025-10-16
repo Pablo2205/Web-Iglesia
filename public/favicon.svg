@@ -1,0 +1,16 @@
+<svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Cuerpo principal de la iglesia (outline) -->
+  <rect x="4" y="12" width="16" height="8" fill="none" stroke="#ea580c" stroke-width="2" stroke-linejoin="round"/>
+  
+  <!-- Techo principal triangular -->
+  <path d="M2 12L12 2L22 12H2Z" fill="none" stroke="#ea580c" stroke-width="2" stroke-linejoin="round"/>
+  
+  <!-- Torre central (outline) -->
+  <rect x="9" y="12" width="6" height="8" fill="none" stroke="#ea580c" stroke-width="2" stroke-linejoin="round"/>
+  
+  <!-- Techo de la torre -->
+  <path d="M8 12L12 6L16 12H8Z" fill="none" stroke="#ea580c" stroke-width="2" stroke-linejoin="round"/>
+  
+  <!-- Cruz en la torre (outline) -->
+  <path d="M12 6V9M10.5 7.5H13.5" stroke="#ea580c" stroke-width="2" stroke-linecap="round"/>
+</svg>

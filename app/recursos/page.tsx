@@ -1,7 +1,182 @@
-import { Download, BookMarked, GraduationCap, Radio, Library } from "lucide-react";
+"use client";
+
+import { Download, BookMarked, GraduationCap, Radio, Library, ExternalLink, Eye, Search, Filter } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
 
 export default function Recursos() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [expandedSection, setExpandedSection] = useState<string | null>(null);
+
+  const toggleSection = (section: string) => {
+    setExpandedSection(expandedSection === section ? null : section);
+  };
+
+  // Recursos disponibles para descarga
+  const recursosDisponibles = [
+    // Materiales de Estudio
+    {
+      id: 1,
+      titulo: "Plan de Lectura Bíblica 2025",
+      descripcion: "Plan anual de lectura bíblica con reflexiones diarias y preguntas de estudio",
+      categoria: "materiales-estudio",
+      tipo: "PDF",
+      tamaño: "2.1 MB",
+      fecha: "2025-01-01",
+      vistaPrevia: "https://drive.google.com/file/d/1ABC123XYZ/preview",
+      descarga: "https://drive.google.com/uc?export=download&id=1ABC123XYZ",
+      icono: <BookMarked className="h-6 w-6" />
+    },
+    {
+      id: 2,
+      titulo: "Guía de Estudio: Romanos 8",
+      descripcion: "Estudio detallado del capítulo 8 de Romanos con preguntas y reflexiones",
+      categoria: "materiales-estudio",
+      tipo: "PDF",
+      tamaño: "3.4 MB",
+      fecha: "2024-11-20",
+      vistaPrevia: "https://drive.google.com/file/d/1DEF456UVW/preview",
+      descarga: "https://drive.google.com/uc?export=download&id=1DEF456UVW",
+      icono: <BookMarked className="h-6 w-6" />
+    },
+    {
+      id: 3,
+      titulo: "Devocional Diario - Enero 2025",
+      descripcion: "Devocionales diarios para el mes de enero con reflexiones y oraciones",
+      categoria: "materiales-estudio",
+      tipo: "PDF",
+      tamaño: "1.8 MB",
+      fecha: "2024-12-15",
+      vistaPrevia: "https://drive.google.com/file/d/1GHI789RST/preview",
+      descarga: "https://drive.google.com/uc?export=download&id=1GHI789RST",
+      icono: <BookMarked className="h-6 w-6" />
+    },
+    
+    // Discipulado
+    {
+      id: 4,
+      titulo: "Curso de Discipulado - Lección 1",
+      descripcion: "Primera lección del curso básico para nuevos creyentes",
+      categoria: "discipulado",
+      tipo: "PDF",
+      tamaño: "2.9 MB",
+      fecha: "2024-10-25",
+      vistaPrevia: "https://drive.google.com/file/d/1JKL012MNO/preview",
+      descarga: "https://drive.google.com/uc?export=download&id=1JKL012MNO",
+      icono: <GraduationCap className="h-6 w-6" />
+    },
+    {
+      id: 5,
+      titulo: "Material para Líderes de Grupos",
+      descripcion: "Guía práctica para liderar grupos pequeños y estudios bíblicos",
+      categoria: "discipulado",
+      tipo: "PDF",
+      tamaño: "2.5 MB",
+      fecha: "2024-09-15",
+      vistaPrevia: "https://drive.google.com/file/d/1PQR345STU/preview",
+      descarga: "https://drive.google.com/uc?export=download&id=1PQR345STU",
+      icono: <GraduationCap className="h-6 w-6" />
+    },
+    {
+      id: 6,
+      titulo: "Guía para Nuevos Creyentes",
+      descripcion: "Material especial para acompañar a nuevos creyentes en su crecimiento",
+      categoria: "discipulado",
+      tipo: "PDF",
+      tamaño: "3.2 MB",
+      fecha: "2024-08-20",
+      vistaPrevia: "https://drive.google.com/file/d/1VWX678YZA/preview",
+      descarga: "https://drive.google.com/uc?export=download&id=1VWX678YZA",
+      icono: <GraduationCap className="h-6 w-6" />
+    },
+    
+    // Transmisiones
+    {
+      id: 7,
+      titulo: "Sermón: La Fe que Transforma",
+      descripcion: "Audio del sermón predicado el domingo pasado",
+      categoria: "transmisiones",
+      tipo: "MP3",
+      tamaño: "15.2 MB",
+      fecha: "2024-12-08",
+      vistaPrevia: "https://drive.google.com/file/d/1BCD234EFG/preview",
+      descarga: "https://drive.google.com/uc?export=download&id=1BCD234EFG",
+      icono: <Radio className="h-6 w-6" />
+    },
+    {
+      id: 8,
+      titulo: "Sermón: El Poder de la Oración",
+      descripcion: "Audio del sermón sobre la importancia de la oración en la vida cristiana",
+      categoria: "transmisiones",
+      tipo: "MP3",
+      tamaño: "18.5 MB",
+      fecha: "2024-11-25",
+      vistaPrevia: "https://drive.google.com/file/d/1HIJ567KLM/preview",
+      descarga: "https://drive.google.com/uc?export=download&id=1HIJ567KLM",
+      icono: <Radio className="h-6 w-6" />
+    },
+    {
+      id: 9,
+      titulo: "Video: Culto Dominical Completo",
+      descripcion: "Video completo del culto dominical con adoración y predicación",
+      categoria: "transmisiones",
+      tipo: "MP4",
+      tamaño: "125.8 MB",
+      fecha: "2024-12-01",
+      vistaPrevia: "https://drive.google.com/file/d/1NOP890QRS/preview",
+      descarga: "https://drive.google.com/uc?export=download&id=1NOP890QRS",
+      icono: <Radio className="h-6 w-6" />
+    },
+    
+    // Librería
+    {
+      id: 10,
+      titulo: "Libro Recomendado: El Poder de la Oración",
+      descripcion: "Resumen y reflexiones del libro sobre la importancia de la oración",
+      categoria: "libreria",
+      tipo: "PDF",
+      tamaño: "4.7 MB",
+      fecha: "2024-11-10",
+      vistaPrevia: "https://drive.google.com/file/d/1TUV123WXY/preview",
+      descarga: "https://drive.google.com/uc?export=download&id=1TUV123WXY",
+      icono: <Library className="h-6 w-6" />
+    },
+    {
+      id: 11,
+      titulo: "Biografía: La Vida de Hudson Taylor",
+      descripcion: "Resumen de la biografía del misionero Hudson Taylor",
+      categoria: "libreria",
+      tipo: "PDF",
+      tamaño: "3.8 MB",
+      fecha: "2024-10-05",
+      vistaPrevia: "https://drive.google.com/file/d/1ZAB456CDE/preview",
+      descarga: "https://drive.google.com/uc?export=download&id=1ZAB456CDE",
+      icono: <Library className="h-6 w-6" />
+    },
+    {
+      id: 12,
+      titulo: "Recursos Teológicos Recomendados",
+      descripcion: "Lista de libros y recursos teológicos recomendados para estudio",
+      categoria: "libreria",
+      tipo: "PDF",
+      tamaño: "1.5 MB",
+      fecha: "2024-09-30",
+      vistaPrevia: "https://drive.google.com/file/d/1FGH789IJK/preview",
+      descarga: "https://drive.google.com/uc?export=download&id=1FGH789IJK",
+      icono: <Library className="h-6 w-6" />
+    }
+  ];
+
+  // Filtrar recursos
+  const recursosFiltrados = recursosDisponibles.filter(recurso => {
+    const matchesSearch = recurso.titulo.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         recurso.descripcion.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesCategory = selectedCategory === "all" || recurso.categoria === selectedCategory;
+    return matchesSearch && matchesCategory;
+  });
+
   const imagenesRecursos = [
     "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&q=80",
     "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80",
@@ -123,15 +298,25 @@ export default function Recursos() {
                       </li>
                     ))}
                   </ul>
-                  <button className="mt-6 w-full bg-primary-600 text-white py-3 rounded-lg hover:bg-primary-700 transition-colors font-semibold">
+                  <Link
+                    href={`/recursos/${
+                      categoria.title === 'Materiales de Estudio' ? 'materiales-estudio' :
+                      categoria.title === 'Discipulado' ? 'discipulado' :
+                      categoria.title === 'Transmisiones' ? 'transmisiones' :
+                      categoria.title === 'Librería' ? 'libreria' :
+                      categoria.title.toLowerCase().replace(/\s+/g, '-')
+                    }`}
+                    className="mt-6 w-full bg-primary-600 text-white py-3 rounded-lg hover:bg-primary-700 transition-colors font-semibold block text-center"
+                  >
                     Ver Recursos
-                  </button>
+                  </Link>
                 </div>
               </div>
             ))}
           </div>
         </div>
       </section>
+
 
       {/* Recursos destacados */}
       <section className="py-20 bg-white">

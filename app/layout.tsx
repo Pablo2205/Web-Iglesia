@@ -7,8 +7,12 @@ import Footer from "@/components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Iglesia - Bienvenidos",
+  title: "IBE Avellaneda Norte - Iglesia",
   description: "Sitio web de nuestra iglesia - Conoce nuestra visión, declaración de fe, actividades y más",
+  icons: {
+    icon: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
 };
 
 export default function RootLayout({
